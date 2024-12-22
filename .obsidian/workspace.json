@@ -1,0 +1,218 @@
+{
+  "main": {
+    "id": "6e9194e8d66a2d23",
+    "type": "split",
+    "children": [
+      {
+        "id": "d67d553c39fe97d4",
+        "type": "tabs",
+        "dimension": 82.99319727891157,
+        "children": [
+          {
+            "id": "d71ee763405b1ebf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Linux Basic/Linux basic.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux basic"
+            },
+            "group": "01cea6e753232563"
+          }
+        ]
+      },
+      {
+        "id": "fc39cad0a7793ef9",
+        "type": "tabs",
+        "dimension": 17.00680272108843,
+        "children": [
+          {
+            "id": "0ca4940aecac3bb3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Linux Basic/Linux basic.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Linux basic"
+            },
+            "group": "01cea6e753232563"
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2ff4593598b38d56",
+    "type": "split",
+    "children": [
+      {
+        "id": "6eeb1f8acb7ef524",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a1e75dc24eb5693c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "cd9876a8b829a2f0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "c3fdc24879e79815",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 205.50446701049805
+  },
+  "right": {
+    "id": "8958964be28bd050",
+    "type": "split",
+    "children": [
+      {
+        "id": "24cba008c1805bb1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "143d48880b1a546d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Boot Loader/Boot_Sequence.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Boot_Sequence"
+            }
+          },
+          {
+            "id": "5bad97e32ff37d10",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Boot Loader/Boot_Sequence.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Boot_Sequence"
+            }
+          },
+          {
+            "id": "57df7bbda64f58a6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "470098a3074301f3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Boot Loader/Boot_Sequence.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Boot_Sequence"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "d71ee763405b1ebf",
+  "lastOpenFiles": [
+    "Trick/Trick.md",
+    "Linux Basic/Linux basic.md",
+    "Linux Basic/images/Pasted image 20241222123425.png",
+    "Linux Basic/images/Pasted image 20241222123354.png",
+    "Linux Basic/images/Pasted image 20241222123235.png",
+    "Linux Basic/images/Pasted image 20241222123131.png",
+    "Linux Basic/images/Pasted image 20241222123044.png",
+    "Linux Basic/images/Pasted image 20241222122934.png",
+    "Linux Basic/images/Pasted image 20241222122005.png",
+    "Linux Basic/images/Pasted image 20241222121953.png",
+    "Linux Basic/images/Pasted image 20241222121826.png",
+    "Linux Basic/images/Pasted image 20241222121545.png",
+    "Linux Basic/images",
+    "Linux Basic",
+    "Embeded_Linux/Embeded_Linux.md",
+    "Future/Future.md",
+    "Linux_From_Scratch/Linux_from_Scratch.md",
+    "Boot Loader/Boot_Sequence.md",
+    "Future/Future.txt",
+    "Future",
+    "Trick",
+    "Boot Loader/Boot_Sequence.pdf",
+    "Boot Loader/Text/command.md",
+    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/zcat",
+    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/watch",
+    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/vi",
+    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/usleep",
+    "Welcome.md"
+  ]
+}
