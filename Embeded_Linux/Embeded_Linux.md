@@ -196,13 +196,21 @@ arm-cortex_a8-linux-gnueabihf-gcc -print-sysroot
 $ git clone git://git.denx.de/u-boot.git
 
 - STEP 1: distclean : deletes all the previously compiled/generated object files. 
+```
 	make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- distclean
+```
 - STEP 2 : apply board default configuration for uboot
-	make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- am335x_evm_defconfig 
+```
+make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- am335x_evm_defconfig 
+```
 - STEP 3 : run menuconfig, if you want to do any settings other than default configuration . 
-	make CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf-  menuconfig
+```
+make CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf-  menuconfig
+```
 - STEP 4 : compile 
-	make CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- -j8 
+```
+make CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- -j4
+```
 
 The results of the compilation are:
 	• u-boot: This is U-Boot in ELF object format, suitable for use with a debugger	
@@ -225,6 +233,67 @@ After that
 	- ["] If there is raw NAND or NOR flash, then an erase block is reserved for this purpose, often with another used for a redundant copy to guard against corruption. If there is eMMC or SD card storage it can be stored in a file in a partition of the disk. Other options include storing in a serial EEPROM connected via an I2C or SPI interface or non-volatile RAM.
 
 ## 3.4 Automating the boot with U-Boot scripts
+boot_scripts=boot.scr.uimg boot.scr
+
+- [!] mmc 0 => eMMC interface ( dev = 0)
+- [!] mcc 1 => MicroSD (dev = 1)
+- [!] Uboot in MicroSD is located in partition 1 ( part =1)  
+
+- [i] Some boot command:
+- **load** : load binary file from a filesystem
+```
+load [interface] [<dev>:<part>] [<Load_to_this_addrr_in_memory> [<filename> [<bytes> [pos]] ]] ]
+```
+- **bootm**  : boot application image from memory
+```
+bootm addr
+```
+
+
+- [!]  Commands is used to boot:
+- Loaded kernel image to the DDR memory from MMC 0 ( sd card) interface
+```
+load mmc 0:1 0x82000000 uImage
+```
+
+- Loaded dtb image to the DDR memory from MMC 0 ( sd card) interface
+```
+load mmc 0:1 0x88000000 am335x-boneblack.dtb
+```
+
+
+- Send bootargsto the linux kernel from u-boot
+```
+setenv bootargs console=ttyO0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait
+setenv bootargs console=ttyO0,115200 root=UUID=93a621c8-ea33-45e9-b7cc-fd8d48763218 rootfstype=ext4 rootwait
+setenv bootargs console=ttyO0,115200 root=PARTUUID=e71559dc-02 rootfstype=ext4
+e71559dc-02
+93a621c8-ea33-45e9-b7cc-fd8d48763218
+```
+
+- Boot from memory command
+```
+bootm 0x82000000 - 0x88000000
+```
+
+- [i] Writing uEnv.txt file
+```
+## U-Boot script
+
+## Set environment variables
+setenv loadaddr 0x82000000
+setenv fdtaddr 0x88000000
+
+## Load kernel and device tree
+load mmc 0:1 ${loadaddr} uImage
+load mmc 0:1 ${fdtaddr} am335x-boneblack.dtb
+
+## Set boot arguments
+setenv bootargs console=ttyO0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw
+
+## Boot the kernel
+bootm ${loadaddr} - ${fdtaddr}
+```
 
 - [?] **How to write Bootscripts**: The bootscript is an script that is automatically executed when the boot loader starts, and before  the OS auto boot process.
 - [x] Step 1: First, you need the **u-boot-tools** installed in your Linux machine:
@@ -234,21 +303,64 @@ sudo apt install u-boot-tools
 => That package provide to us the tool **mkimage** to convert a text file (.src, .txt) file to a bootscript file for U-Boot.
 - [x] Step 2: Now, create your custom script, in this case a simple script for load binary file:
 ```markup
-nvim mycustomscript.scr
+nvim uENV.txt
 ```
 - [x]  Now we can convert the text file to bootscript with mkimage
 ```
-mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 -e 0x80008000 -n 'Linux' -d uENV.txt uENV
+mkimage -A arm -T script -C none -n "U-Boot script" -d uENV.txt boot.scr
 ```
-- [ ] **Insert the SD card into your BeagleBone Black** and power it on.
-- [ ] **Set the boot command in U-Boot**:
-```
-setenv bootcmd 'load mmc 0:1 0x80000000 boot.scr; source 0x80000000'
-```
-- [ ] **Save the environment** to make sure the changes persist:
-```
- saveenv
-```
+
+Here are the key options available with `mkimage`:
+1. **-A [architecture]**: Specifies the architecture for the image. Common values include:
+    
+    - `arm` for ARM architecture
+        
+    - `x86` for x86 architecture
+        
+2. **-O [os]**: Specifies the operating system for the image. Common values include:
+    
+    - `linux` for Linux OS
+        
+    - `android` for Android OS
+        
+3. **-T [image_type]**: Specifies the type of image being created. Common values include:
+    
+    - `kernel` for kernel image
+        
+    - `ramdisk` for RAM disk image
+        
+    - `script` for boot script
+        
+    - `multi` for multi-file image
+        
+4. **-C [compression]**: Specifies the compression type used for the image. Common values include:
+    
+    - `none` for no compression
+        
+    - `gzip` for gzip compression
+        
+    - `bzip2` for bzip2 compression
+        
+5. **-a [load_address]**: Specifies the load address of the image in memory.
+    
+6. **-e [entry_point]**: Specifies the entry point address of the image.
+    
+7. **-n [image_name]**: Specifies a name for the image. This name is embedded in the image and can be displayed by U-Boot.
+    
+8. **-d [data_file]**: Specifies the data file to be included in the image.
+    
+9. **-b [data_file]**: Similar to `-d`, but used for multi-file images to specify additional files.
+    
+10. **-i [image_file]**: Specifies the input image file.
+    
+11. **-k [key_dir]**: Specifies the directory containing the key files for signing the image.
+    
+12. **-r**: Indicates that the image should be created as a relocatable image.
+    
+13. **-v [version]**: Specifies the image version number.
+    
+14. **-h**: Displays help information for the `mkimage` command.
+
 After completing these steps, your BeagleBone Black should automatically run the U-Boot script each time it boots.
 
 ## 3.5 Porting U-Boot to a new board
@@ -309,6 +421,9 @@ $ make CROSS_COMPILE=arm-cortex_a8-linux-gnueabi
 
 ## 4.1 Building the kernel
 
+```
+git clone git@github.com:torvalds/linux.git
+```
 ### 4.1.1 Inside Linux kernel folder
 The main directories of interest are:
 - **arch**: This contains architecture-specific files. There is one subdirectory per architecture.
@@ -380,19 +495,24 @@ $ make kernelrelease 5.1.10-myversion-v1.0
 
 - ["] There is a small issue with building a uImage file for ARM with multi-platform support. This support allows a single kernel binary to run on multiple platforms and was introduced in Linux 3.7. The kernel selects the correct platform by reading the machine number or the device tree passed by the bootloader. The issue arises because the physical memory location may vary across platforms, meaning the kernel relocation address, typically 0x8000 bytes from the start of physical RAM, can differ. This relocation address is encoded into the uImage header by the mkimage command during kernel build. However, the process fails if multiple relocation addresses exist, making the uImage format incompatible with multi-platform images. Nonetheless, a uImage binary can still be created from a multi-platform build if the correct LOADADDR of the specific SoC is provided. This load address can be found in the mach-\[your SoC]/Makefile.boot under the value of zreladdr-y.
 
-
+```
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- distclean
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- omap2plus_defconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- uImage dtbs LOADADDR=0x80008000 -j4
+```
 ### 4.2.2 Compiling device trees
 ### 4.2.3 Compiling modules
 
 - If you have configured some features to be built as modules, you can build them separately using the modules target:
 ```
-make -j 4 ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- modules
+make -j4 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
 ```
 - But The compiled modules have a .ko suffix and are generated in the same directory as the source code, meaning that they are scattered all around the kernel source tree.
 - Therefore, We need one more command to gather them by *modules_install* . The default location is /lib/modules in your development system, which is almost certainly not what you want. So, we need this option *INSTALL_MOD_PATH:
 
 ```
-make -j4 ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- INSTALL_MOD_PATH=$HOME/rootfs modules_install
+make -j4 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/home/truonglv/beagleBone/build/rfs modules_install
 ```
 
 
@@ -479,15 +599,67 @@ mount -t proc nodevice /proc
 - **disk image**: a copy of the root filesystem formatted and ready to be loaded onto a mass storage device on the target. For example, it could be an image in ext4 format ready to be copied onto an SD card, or it could be in jffs2 format ready to be loaded into flash memory via the bootloader.
 - **network filesystem**: the staging directory can be exported to the network via an NFS server and mounted by the target at boot-time.
 
+- [I] Need to update
 
 
+# 6. Selecting a Build System
+
+- We will Build system to automate to building a toolchain, a bootloader, a kernel, and a root filesystem.
+- A build system should be able to build, from upstream source code, some or all of the following:
+	- The toolchain
+	- The bootloader
+	- The kernel
+	- The root filesystem
+- A build system has to be able to do the following:
+	- Download a source from upstream, either directly from the source code control system or as an archive, and cache it locally
+	- Apply patches to enable cross compilation, fix architecture-dependent bugs, apply local configuration policies, and so on
+	- Build the various components
+	- Create a staging area and assemble a root filesystem
+	- Create image files in various formats ready to be loaded onto the target
+- Other things that are useful are as follows:
+	- Add your own packages containing, for example, applications or kernel changes
+	- Select various root filesystem profiles: large or small, with and without graphics or other features
+	- Create a standalone SDK that you can distribute to other developers so that they don't have to install the complete build system
+	- Track which open source licenses are used by the various packages you have selected
+	- Allow you to create updates for in-field updating
+	- Have a user-friendly user interface
 
 
+- Open source build systems have matured considerably over the last few years. There are many around, including: 
+	-  Buildroot: An easy-to-use system using GNU make and Kconfig (http://buildroot.org)
+	-  EmbToolkit: A simple system for generating root filesystems; the only one at the time of writing that supports LLVM/Clang out of the box (https://www.embtoolkit.org)
+	-  OpenEmbedded: A powerful system which is also a core component of the Yocto Project and others (http://openembedded.org)
+	-  OpenWrt: A build tool oriented towards building firmware for wireless routers (https://openwrt.org) • PTXdist: An open source build system sponsored by Pengutronix (http://www.pengutronix.de/software/ptxdist/index_en.html)
+	-  Tizen: A comprehensive system, with emphasis on mobile, media, and in-vehicle devices (https://www.tizen.org) 
+	-  The Yocto Project: This extends the OpenEmbedded core with configuration, layers, tools, and documentation: probably the most popular system (http://www.yoctoproject.org)
+
+- **Buildroot** has the primary aim of building root filesystem images, hence the name, although it can build bootloader and kernel images as well.
+- **The Yocto Project**, on the other hand, is more general in the way it defines the target system and so it can build fairly complex embedded devices. Every component is generated as a package in RPM, .dpkg or .ipk format (see the following section) and then the packages are combined together to make the filesystem image. Furthermore, **you can install a package manager in the filesystem image, which allows you to update packages at runtime**. In other words, when you build with the Yocto Project, you are, in effect, creating your own custom Linux distribution.
+## 6.1 Buildroot
+
+## 6.1 Stable releases and support
+
+- [i] The Buildroot developers produce stable releases four times a year, in February, May, August, and November. They are marked by git tags of the form \<year>.02, \<year>05, \<year>.08, and \<year>.11
+
+## 6.2 Installing
+```
+$ git clone git://git.buildroot.net/buildroot
+$ cd buildroot
+$ git checkout 2013.05
+```
+- [!] Next, you should read the section titled System Requirement from The Buildroot User Manual, available at http://buildroot.org/downloads/manual/manual.html and make sure that you have installed all the packages listed there
+## 6.3 Configuring
+
+```
+$ make clean # Always do a clean when changing targets 
+$ make beaglebone_defconfig
+```
 
 
+[TBD]
 
 
-
+# 7. Creating a Storage Strategy
 
 
 

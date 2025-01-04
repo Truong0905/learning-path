@@ -41,9 +41,7 @@ Có phương pháp là shadowing có thể ứng dụng cùng lúc với luyện
 3. **Nghe, đọc theo (trọng âm, phát âm, ngắt nghỉ)**
 4. **Nói cùng 1 lúc với video**
 5. **Shadow without transcript**
-
-
-- ["] Phần này t thấy nếu tự luyện thụ động thì khá chán và cũng lâu tiến bộ, c có thể thử dùng các app như Elsa premium (mất phí), ngoài việc luyện phát âm thì nó có chế độ luyện nói theo các topic dạng mình nói chuyện với AI ấy, hỏi và trả lời qua lại theo dạng conversation. Chắc nói chuyện với siri cũng được nhưng siri thì mình phải hỏi nó, còn Elsa thì nó hỏi mình, nên mình cũng phải brainstorm ra câu trả lời, giúp tăng phản xạ khi nói chuyện
+- ["] Phần này t thấy nếu tự luyện thụ động thì khá chán và cũng lâu tiến bộ, c có thể thử dùng các app như Elsa premium (mất phí), ngoài việc luyện phát âm thì nó có chế độ luyện nói theo các topic dạng mình nói chuyện với AI ấy, hỏi và trả lời qua lại theo dạng conversation. Chắc nói chuyện với siri cũng được nhưng siri thì mình phải hỏi nó, còn Elsa thì nó hỏi mình, nên mình cũng phải brainstorm ra câu trả lời, giúp tăng phản xạ khi nói chuyện Hoặc nếu c có thời gian hơn thì tìm clb nói tiếng anh, t có biết 2 cái đó, offline 1b/ tuần, nói chuyện với mn
 
 **Tham khảo:**
 Youtube: 

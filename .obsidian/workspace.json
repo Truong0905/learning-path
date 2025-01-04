@@ -4,44 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "d67d553c39fe97d4",
+        "id": "a5d38fd0b03744b7",
         "type": "tabs",
-        "dimension": 82.99319727891157,
         "children": [
           {
-            "id": "d71ee763405b1ebf",
+            "id": "1cf0e4b45a271f92",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Linux Basic/Linux basic.md",
+                "file": "Device Driver/Device Driver.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux basic"
-            },
-            "group": "01cea6e753232563"
-          }
-        ]
-      },
-      {
-        "id": "fc39cad0a7793ef9",
-        "type": "tabs",
-        "dimension": 17.00680272108843,
-        "children": [
-          {
-            "id": "0ca4940aecac3bb3",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "Linux Basic/Linux basic.md"
-              },
-              "icon": "lucide-list",
-              "title": "Outline of Linux basic"
-            },
-            "group": "01cea6e753232563"
+              "title": "Device Driver"
+            }
           }
         ]
       }
@@ -110,7 +88,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "143d48880b1a546d",
+            "id": "fbf79930bed90f5a",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -129,7 +107,7 @@
             }
           },
           {
-            "id": "5bad97e32ff37d10",
+            "id": "ff06fa4a999f35b0",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -143,7 +121,7 @@
             }
           },
           {
-            "id": "57df7bbda64f58a6",
+            "id": "74da08fb2b67958c",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -156,22 +134,22 @@
             }
           },
           {
-            "id": "470098a3074301f3",
+            "id": "54a9e0d5a2ebed31",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Boot Loader/Boot_Sequence.md"
+                "file": "Build/Build commad.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Boot_Sequence"
+              "title": "Outline of Build commad"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -184,35 +162,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d71ee763405b1ebf",
+  "active": "1cf0e4b45a271f92",
   "lastOpenFiles": [
-    "Trick/Trick.md",
+    "Device Driver/images",
+    "Device Driver/Untitled.md",
+    "Device Driver/Device Driver.md",
+    "Embeded_Linux/Embeded_Linux.md",
+    "Device Driver",
+    "Build/Build commad.md",
+    "Linux_From_Scratch/Linux_from_Scratch.md",
     "Linux Basic/Linux basic.md",
-    "Linux Basic/images/Pasted image 20241222123425.png",
-    "Linux Basic/images/Pasted image 20241222123354.png",
-    "Linux Basic/images/Pasted image 20241222123235.png",
-    "Linux Basic/images/Pasted image 20241222123131.png",
-    "Linux Basic/images/Pasted image 20241222123044.png",
-    "Linux Basic/images/Pasted image 20241222122934.png",
-    "Linux Basic/images/Pasted image 20241222122005.png",
-    "Linux Basic/images/Pasted image 20241222121953.png",
-    "Linux Basic/images/Pasted image 20241222121826.png",
-    "Linux Basic/images/Pasted image 20241222121545.png",
+    "Trick/Trick.md",
+    "Boot Loader/Boot_Sequence.md",
+    "Build",
+    "Boot Loader/Image/Pasted image 20250102230844.png",
+    "Boot Loader/Image/Pasted image 20250102230829.png",
+    "Boot Loader/Image/Pasted image 20250102230750.png",
+    "Boot Loader/Image/Pasted image 20250102230717.png",
+    "Boot Loader/Image/Pasted image 20250102230443.png",
+    "Boot Loader/Image/Pasted image 20250102230428.png",
+    "Boot Loader/Image/Pasted image 20250102230330.png",
+    "Boot Loader/Image/Pasted image 20250102230305.png",
+    "Boot Loader/Image/Pasted image 20250102230048.png",
+    "Boot Loader/Image/Pasted image 20250102225137.png",
+    "Future.pdf",
+    "Future/Future.md",
     "Linux Basic/images",
     "Linux Basic",
-    "Embeded_Linux/Embeded_Linux.md",
-    "Future/Future.md",
-    "Linux_From_Scratch/Linux_from_Scratch.md",
-    "Boot Loader/Boot_Sequence.md",
     "Future/Future.txt",
     "Future",
     "Trick",
     "Boot Loader/Boot_Sequence.pdf",
     "Boot Loader/Text/command.md",
     "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/zcat",
-    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/watch",
-    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/vi",
-    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/usleep",
     "Welcome.md"
   ]
 }

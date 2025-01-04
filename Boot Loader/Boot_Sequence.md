@@ -264,7 +264,7 @@ uenvcmd=setenv autoload no; run loadtftp; run netargs; bootm ${loadaddr} - ${fdt
 - Step 2 :  Export  path of the cross compilation toolchain. (you have to include this path in the environmental variable called PATH.)
 	 $ nvim /home/truonglv/.bashrc
 ```
-		export PATH=$PATH:/home/truonglv/Downloads/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin.
+		export PATH=$PATH:/home/truonglv/beagleBone/gcc/bin
 ```
 
 - Step 3: Run command : **source / home/truonglv/.bashrc**
@@ -308,7 +308,7 @@ This is method 2:
 - STEP 3 : run menuconfig, if you want to do any settings other than default configuration . 
 	make CROSS_COMPILE=arm-linux-gnueabihf-  menuconfig
 - STEP 4 : compile 
-	make CROSS_COMPILE=arm-linux-gnueabihf- -j8 
+	make CROSS_COMPILE=arm-linux-gnueabihf- -j4 
 
 - [!]  *After all, we will get these file: **MLO, u-boot.img***
 ## 4.3 Linux Kernel  Compilation
@@ -327,7 +327,7 @@ sudo apt-get install u-boot-tools
 - STEP 1:
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- distclean
 - STEP 2:
-	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bb.org_defconfig 
+	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- omap2plus_defconfig
 	( For 4.11, use omap2plus_defconfig)
 
 	(STEP2.1 : dùng cho build kernel module ( tự build )
@@ -337,7 +337,10 @@ sudo apt-get install u-boot-tools
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
 
 - STEP 4:
-	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- uImage dtbs LOADADDR=0x80008000 -j8
+```
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- uImage dtbs LOADADDR=0x80008000 -j4
+```
+	
 
 - STEP 5:
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 modules
@@ -345,10 +348,10 @@ sudo apt-get install u-boot-tools
 - STEP 6:  you have to install all those modules ( at step 5 ) into the root file system.
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/<**PATH_OF_RFS**> modules_install
 	( **PATH_OF_RFS**  will be created at   4.4 step 4)
-	
+	make -j4 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/home/truonglv/beagleBone/book/rfs modules_install
 - [!] **After all , we will get :**
 	+ **uImage** file at : linux/arch/arm/boot
-	 + **dts** folder  at:  linux/arch/arm/boot 
+	 + **dts** *folder*  at:  linux/arch/arm/boot 
 
 ## 4.4 Busybox
 [Link](https://busybox.net/downloads/)  : tar.bz2 ( can download a newest version)
@@ -415,4 +418,250 @@ uenvcmd=setenv autoload no; run loadtftp; run netargs; bootm ${loadaddr} - ${fdt
 
 
 We can generate all things in Section 4 by doing only Buildroot.
+
+Select the default configuration for the target:
+```
+make beaglebone_defconfig
+```
+
+Optional: modify the configuration:
+```
+make menuconfig
+```
+
+/home/truonglv/beagleBone/gcc
+Build:
+```
+make -j4
+```
+clean:
+
+```
+make clean
+```
+
+
+Result of the build
+output/images/
++-- am335x-boneblack.dtb
++-- am335x-boneblack-wireless.dtb
++-- am335x-boneblue.dtb
++-- am335x-bonegreen.dtb
++-- am335x-bonegreen-wireless.dtb
++-- am335x-bone.dtb
++-- am335x-evm.dtb
++-- am335x-evmsk.dtb
++-- boot.vfat
++-- MLO
++-- rootfs.ext2
++-- rootfs.tar
++-- sdcard.img
++-- u-boot.img
++-- uEnv.txt
++-- zImage
+
+
+
+
+# 6. Booting BBB over TFTP
+## 6.1 Introduction
+- In SD CARD ( in boot partiton)
+	- MLO
+	- u-boot.img
+	- boot.scr
+- In host PC: ( /var/lib/tftpboot)
+	- am335x-Boneblack.dtb
+	- uImage
+	- Initramfs
+- Steps:
+	- Step 1: First we boot the board via SDcard with these images up to u-boot
+	- Step 2: We transfer these images using TFTP form host to board over ethernet
+## 6.2 Preparing TFTP host
+**Step 1**: Need to install TFTP server in host PC
+```
+sudo apt-get install tftpd-hpa
+```
+**Step 2 :** Create/Open the file “tftpd-hpa” in the below directory
+```
+sudo nvim /etc/default/tftpd-hpa
+```
+And  put the below entry in to this file  and save it
+```
+TFTP_USERNAME="tftp"  
+TFTP_DIRECTORY="/var/lib/tftpboot"  
+TFTP_ADDRESS=":69"  
+TFTP_OPTIONS="--create --secure"
+```
+**Step 3:** Create a folder /var/lib/tftpboot and execute below commands
+```
+$ sudo mkdir -p /var/lib/tftpboot
+
+$ sudo chown tftp:tftp /var/lib/tftpboot
+
+$ sudo chmod -R 777 /var/lib/tftpboot
+```
+**Step 4:** Now we can start the TFTP daemon.
+```
+sudo systemctl start tftpd-hpa
+```
+
+
+## 6.3 uEnv.txt
+
+```
+console=ttyO0,115200n8
+ipaddr=192.168.7.2
+serverip=192.168.0.95
+absolutepath=/var/lib/tftpboot/
+rootpath=/srv/nfs/bbb,nolock,wsize=1024,rsize=1024 rootwait rootdelay=5
+loadtftp=echo Booting from network ...;tftpboot ${loadaddr} ${absolutepath}uImage; tftpboot ${fdtaddr} ${absolutepath}am335x-boneblack.dtb
+netargs=setenv bootargs console=${console} root=/dev/nfs rw nfsroot=${serverip}:${rootpath} 
+uenvcmd=setenv autoload no; run loadtftp; run netargs; bootm ${loadaddr} - ${fdtaddr}
+```
+
+```
+$ sudo mkdir -p /srv/nfs/bbb
+```
+
+# 7. Configure Network
+
+## 7.1 Setup usb0 interface in BBB
+
+bring up usb0
+```
+  Device Drivers  ---> 
+  [*] Network device support  --->
+      USB Network Adapters  --->
+      <M> Multi-purpose USB Networking Framework  
+      <M>   CDC Ethernet support (smart devices such as cable modems) 
+      <M>   Host for RNDIS and ActiveSync devices (EXPERIMENTAL)
+      <M>   Simple USB Network Links (CDC Ethernet subset)
+                       
+ Device Drivers  --->   
+ [*] USB support  --->  
+     <M>   USB Gadget Support  --->
+     <M>     Ethernet Gadget (with CDC Ethernet support)
+     <M>     CDC Composite Device (Ethernet and ACM)
+     <M>     Multifunction Composite Gadget (EXPERIMENTAL
+            [*]       RNDIS + CDC Serial + Storage configuration
+```
+
+in: /home/truonglv/beagleBone/build/rfs/etc/network/interfaces
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+	address 192.168.7.2
+	netmask 255.255.255.0
+	network 192.168.7.0
+	gateway 192.168.7.1
+
+auto usb0
+iface usb0 inet static
+	address 192.168.6.2
+	netmask 255.255.255.0
+	network 192.168.6.0
+	gateway 192.168.6.1
+```
+
+in host pc: 
+```
+ifconfig -a
+```
+Then 
+```
+sudo ifconfig <interface> 192.168.6.1 up  
+```
+
+
+## 7.2 Setup ssh
+
+- On host PC, in folder build, at file :~/beagleBone/build/rfs/etc/ssh/sshd_config
+![[Pasted image 20250101203916.png]]
+
+
+# 8. Add a new user
+
+
+```
+adduser truongbbb
+passwd truongbbb
+
+mkdir /home
+mkdir /home/truongbbb
+chown truongbbb:truongbbb /home/truongbbb
+```
+
+# 9. Display current directory 
+
+vi ~/.bashrc
+```
+#!/bin/bash
+PS1='\u@\h:\w\$ '
+```
+
+source ~/.bashrc
+
+
+
+# 10. Share internet from VM to Beagble Bone Black:
+## 10.1 Subnet mask
+![[Pasted image 20250102223718.png]]
+![[Pasted image 20250102223736.png]]
+![[Pasted image 20250102223838.png]]
+![[Pasted image 20250102223932.png]]
+![[Pasted image 20250102224057.png]]
+
+![[Pasted image 20250102224517.png]]
+![[Pasted image 20250102224840.png]]
+![[Pasted image 20250102225137.png]]
+
+
+- Step 1 (on BBB) Setup network for Beagble Bone
+vi /etc/resolv.conf
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+sudo route add default gw 192.168.6.1 usb0
+- Step 2: Host PC
+echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+
+sudo iptables --table nat --append POSTROUTING --out-interface ens33 --jump MASQUERADE
+
+sudo iptables --append FORWARD --in-interface enxfeca17dbab2d --jump ACCEPT
+
+
+## 10.2  Default Gateway
+![[Pasted image 20250102230048.png]]
+![[Pasted image 20250102230305.png]]
+
+![[Pasted image 20250102230330.png]]
+![[Pasted image 20250102230428.png]]
+![[Pasted image 20250102230443.png]]
+
+![[Pasted image 20250102230717.png]]
+
+![[Pasted image 20250102230750.png]]
+![[Pasted image 20250102230844.png]]
+
+
+```
+$ vi /etc/resolv.conf
+```
+
+```text
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+(with root permission)
+```
+$ route add default gw 192.168.6.1 usb0
+```
+
+
+# 11. NFS
+
+
 

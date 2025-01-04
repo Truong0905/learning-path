@@ -236,7 +236,31 @@ find . -name "name of the file"
 - [i]  All applications you would have to run that as a script and that will run in the background. (And also all those different commands that we run all of them are also referred to as scripts.)
 
 - [?] What is a process?
-- When you run an application or when you start up an application, it actually generates process with it's process ID. Now processes could be one associated to that application.
+	- When you run an application or when you start up an application, it actually generates process with it's process ID. Now processes could be one associated to that application.
+
+- daemon: It is something that continuously runs in the background or it doesn't stops. So when you run a daemon, which is also a process but it keeps on running the background and it keeps listening to the incoming traffic or outgoing traffic.
+- thread:  Every process could have multiple threads associated with it.
+-  Job: A job is something that is created by scheduler like a work order to run those application and services.
+- Some commands:
+	- **systemctl**
+	- **ps** : This command allows you to see what are the processes running in your Linux system.
+	- **top** : you'll see all your processes running in your system depending on which process you want to see first,based on its load, and it also tells you your memory information, CPU information that is being used by that process.
+	- **kill** : The kill command kills the process. It kills by the process name or kills by the process id.
+	- **Crontab** : Crontab command is used to schedule these applications or these process or these services for you in your system
+	- **at**. : At command is just like crontab. The only difference between at and crontab is at is schedule as one time basis or as an ad hoc process.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
