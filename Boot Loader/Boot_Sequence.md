@@ -629,7 +629,7 @@ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 
 sudo iptables --table nat --append POSTROUTING --out-interface ens33 --jump MASQUERADE
 
-sudo iptables --append FORWARD --in-interface enxfeca17dbab2d --jump ACCEPT
+sudo iptables --append FORWARD --in-interface enx763a6b7acf66 --jump ACCEPT
 
 
 ## 10.2  Default Gateway

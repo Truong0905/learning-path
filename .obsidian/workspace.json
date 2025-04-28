@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "a5d38fd0b03744b7",
+        "id": "3e2e88243943ba18",
         "type": "tabs",
         "children": [
           {
-            "id": "1cf0e4b45a271f92",
+            "id": "6f9d68ce53864db5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Device Driver/Device Driver.md",
+                "file": "Build_Guideline/Build commad.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Device Driver"
+              "title": "Build commad"
             }
           }
         ]
@@ -40,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "byCreatedTimeReverse",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -77,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 205.50446701049805
+    "width": 200
   },
   "right": {
     "id": "8958964be28bd050",
@@ -162,39 +163,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1cf0e4b45a271f92",
+  "active": "6f9d68ce53864db5",
   "lastOpenFiles": [
-    "Device Driver/images",
-    "Device Driver/Untitled.md",
-    "Device Driver/Device Driver.md",
-    "Embeded_Linux/Embeded_Linux.md",
-    "Device Driver",
-    "Build/Build commad.md",
-    "Linux_From_Scratch/Linux_from_Scratch.md",
-    "Linux Basic/Linux basic.md",
-    "Trick/Trick.md",
     "Boot Loader/Boot_Sequence.md",
-    "Build",
-    "Boot Loader/Image/Pasted image 20250102230844.png",
-    "Boot Loader/Image/Pasted image 20250102230829.png",
-    "Boot Loader/Image/Pasted image 20250102230750.png",
-    "Boot Loader/Image/Pasted image 20250102230717.png",
-    "Boot Loader/Image/Pasted image 20250102230443.png",
-    "Boot Loader/Image/Pasted image 20250102230428.png",
-    "Boot Loader/Image/Pasted image 20250102230330.png",
-    "Boot Loader/Image/Pasted image 20250102230305.png",
-    "Boot Loader/Image/Pasted image 20250102230048.png",
-    "Boot Loader/Image/Pasted image 20250102225137.png",
-    "Future.pdf",
-    "Future/Future.md",
-    "Linux Basic/images",
-    "Linux Basic",
-    "Future/Future.txt",
-    "Future",
-    "Trick",
-    "Boot Loader/Boot_Sequence.pdf",
-    "Boot Loader/Text/command.md",
-    "am335x_tiny_filesystem/am335x_tiny_filesystem/bin/zcat",
-    "Welcome.md"
+    "Build_Guideline/Build commad.md",
+    "Linux Basic/Linux basic.md",
+    "Yocto/Sumary.md",
+    "YoctoTutorials/00_Yocto_Intro/00-Yocto-Intro.md",
+    "Embeded_Linux/Embeded_Linux.md",
+    "Device Driver/Device Driver.md",
+    "Kernel_doc/Untitled.md",
+    "Multi Threads/Untitled 1.md",
+    "Misc/Misc.md",
+    "Multi Threads/Untitled.md",
+    "Linux_From_Scratch/Linux_from_Scratch.md",
+    "Misc/images/Pasted image 20250319012528.png",
+    "Misc/images/Pasted image 20250319012444.png",
+    "Misc/images",
+    "Misc/images/Pasted image 20250319012323.png",
+    "Misc",
+    "Trick/Trick.md",
+    "Multi Threads",
+    "Kernel_doc",
+    "Trick/images/Pasted image 20250302115237.png",
+    "Trick/images",
+    "Yocto/images/Pasted image 20250227214918.png",
+    "Yocto/images/Pasted image 20250227214800.png",
+    "Yocto/images/Pasted image 20250227214745.png",
+    "Yocto/images/Pasted image 20250227214717.png",
+    "Yocto/images/Pasted image 20250227214641.png",
+    "Yocto/images/Pasted image 20250227214506.png",
+    "YoctoTutorials/25_SystemD_Service_Recipe/25_SystemD_Service_Recipe.md",
+    "YoctoTutorials/24_SystemD_Init_Manager/24_SystemD_init_manager.md",
+    "Yocto_folder",
+    "YoctoTutorials/11_RDEPENDS/11_RDEPENDS.md",
+    "YoctoTutorials/10_Patch/10_Patch.md",
+    "YoctoTutorials/09_Build_Tasks/09_Build_Tasks.md",
+    "YoctoTutorials/07_Variable_Assignment/07_Variable_Assignment.md",
+    "YoctoTutorials/04_Add_Package/04_Add_Packages.md",
+    "YoctoTutorials/08_Hello_World_Recipe/08_Hello_World_Recipe.md",
+    "YoctoTutorials/06_Basic_Variables/06_Basic_Variables.md",
+    "Yocto/images",
+    "YoctoTutorials/05_Create_Layer/05_Create_Layer.md",
+    "YoctoTutorials/03_BBLAYERS_Conf/03_BBLAYERS_Conf.md",
+    "YoctoTutorials/02_Local_Conf/02_Local_Conf.md",
+    "YoctoTutorials/01_Flashing_BBB/01-Flashing-BBB.md",
+    "Device Driver/images",
+    "Device Driver",
+    "Build_Guideline"
   ]
 }

@@ -13,7 +13,7 @@
 		- CPU architects—These are the organizations that design the CPUs we use.
 		- SoC vendors (Atmel, Broadcom, Freescale, Intel, Qualcomm, TI, and many others)—They take the kernel and toolchain from the CPU architects and modify it to support their chips.
 		- Board vendors and OEMs—these people take the reference designs from SoC vendors and build them in to specific products, for instance set-top boxes or cameras, or create more general purpose development boards, such as those from Avantech and Kontron.
-		- => These form a chain, with your project usually at the end, which means that you do not have a free choice of components. You cannot simply take the latest kernel from kernel.org, except in a few rare cases, because it does not have support for the chip or board that you are using.
+		- => These form a chain, with your project usually at the end, which means that you do not have a free choice of components. **You cannot simply take the latest kernel from kernel.org, except in a few rare cases, because it does not have support for the chip or board that you are using.**
 
 - Project lifecycle
 	- Set up the development environment and create a working platform
@@ -26,7 +26,7 @@
 	- Kernel: This is the heart of the system, managing system resources and interfacing with hardware.
 	- Root filesystem: This contains the libraries and programs that are run once the kernel has completed its initialization
 - Licenses:
-	- GPL: The GPL licenses has clauses which compel you to pass the rights to obtain and modify the software on to your end users. . The GPL goes further to say that you cannot incorporate GPL code into proprietary programs. Any attempt to do so would make the GPL apply to the whole.
+	- GPL: The GPL licenses has clauses which compel you to pass the rights to obtain and modify the software on to your end users.  The GPL goes further to say that you cannot incorporate GPL code into proprietary programs. Any attempt to do so would make the GPL apply to the whole.
 	- So, what about libraries? If they are licensed with the GPL, any program linked with them becomes GPL also. However, most libraries are licensed under the Lesser General Public License (LGPL). If this is the case, you are allowed to link with them from a proprietary program.
 # 2. Learning About Toolchains
 
@@ -217,7 +217,7 @@ The results of the compilation are:
 	• u-boot.map: This is the symbol table	
 	• u-boot.bin: This is U-Boot in raw binary format, suitable for running on your device	
 	• u-boot.img: This is u-boot.bin with a U-Boot header added, suitable for uploading to a running copy of U-Boot
-	• u-boot.srec: This is U-Boot in Motorola srec format, suitable fortransferring over a serial connection
+	• u-boot.srec: This is U-Boot in Motorola srec format, suitable for transferring over a serial connection
 
 After that
 - cp MLO u-boot.img /media/truonglv/BOOT/
@@ -365,7 +365,7 @@ After completing these steps, your BeagleBone Black should automatically run the
 
 ## 3.5 Porting U-Boot to a new board
 
-- [?] Let's assume that your hardware department has created a new board called "Nova" that is based on the BeagleBone Black and that you need to port U-Boot to it. ( Please read the book again to know more details)
+- [?] Let's assume that your hardware department has created a new board called "Nova" that is based on the BeagleBone Black and that you need to port U-Boot to it. ( Please read the book again to know more details <From **Porting U-Boot to a new board** >)
 
 ### 3.5.1 In U-boot folder
 - U-boot configuration settings now is located in **Kconfig** files 
@@ -388,7 +388,8 @@ After completing these steps, your BeagleBone Black should automatically run the
 	```c
 	CONFIG_SPL=y 
 	CONFIG_SYS_EXTRA_OPTIONS="SERIAL1,CONS_INDEX=1,EMMC_BOOT"
-	+S:CONFIG_ARM=y +S:CONFIG_TARGET_NOVA=y
+	+S:CONFIG_ARM=y 
+	+S:CONFIG_TARGET_NOVA=y
 	```
 	- ["] On the first line, CONFIG_SPL=y causes the SPL binary, MLO, to be generated, CONFIG_ARM=y causes the contents of arch/arm/Kconfig to be included on line three. On line four, CONFIG_TARGET_NOVA=y selects your board. Note that lines three and four are prefixed by +S: so that they apply to both the SPL and normal binaries. You should also add a menu option to the ARM architecture Kconfig that allows people to select Nova as a target:
 	```c
@@ -405,8 +406,10 @@ After completing these steps, your BeagleBone Black should automatically run the
 		-  README: Contains any useful information about this port of U-Boot, for example, which hardware variants are covered
 		```
 		$ mkdir board/nova
+		$ cp -a board/ti/am335x board/nova
 		```
-
+		![[Pasted image 20250104211146.png]]
+			
 	- Configuration header files: Each board has a header file in include/configs which contains the majority of the configuration. The file is named by the SYS_CONFIG_NAME identifier in the board's Kconfig. The format of this file is described in detail in the README file at the top level of the U-Boot source tree.
 
 ### 3.5.3 Building and testing
@@ -517,6 +520,7 @@ make -j4 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/home/truo
 
 
 ## 4.3 Porting Linux to a new board 
+( Read this book again start from page 122 <**With a device tree**>)
 
 ### 4.3.1 With a device tree
 - The first thing to do is create a device tree for the board and modify it to describe the additional or changed hardware on the board
@@ -592,7 +596,7 @@ mount -t proc nodevice /proc
 ## 5.5 Kernel modules
 
 - If you have kernel modules, they need to be installed into the root filesystem, using the kernel **make modules_install** target.This will copy them into the directory **/lib/modules/** together with the configuration files needed by the **modprobe** command
-- Be aware that you have just created a dependency between the kernel and the root filesystem. If you update one, you will have to update the other.
+- **Be aware that you have just created a dependency between the kernel and the root filesystem. If you update one, you will have to update the other.**
 ## 5.6 Transfering the root filesystem to the target
 
 - **ramdisk**: a filesystem image that is loaded into RAM by the bootloader. Ramdisks are easy to create and have no dependencies on mass storage drivers.
@@ -660,6 +664,66 @@ $ make beaglebone_defconfig
 
 
 # 7. Creating a Storage Strategy
+
+
+
+# 8. Introducing Device Drivers
+
+**As a developer of embedded systems, you need to know how device drivers fit into the overall architecture and how to access them from user space programs.**
+
+
+- To read/write a device :  /dev/<device_name>
+- [!] Network devices are not accessed through device nodes and they do not have major and minor numbers. Instead, a network device is allocated a name by the kernel, based on a string and an instance number.
+- Once you have a running Linux system, it is useful to know which device drivers are loaded and what state they are in. You can find out a lot by reading the files in **/proc** and **/sys**. 
+## 8.1 In /proc/
+
+- you can list the character and block device drivers currently loaded and active by reading **/proc/devices** . You can also list network interfaces using **ifconfig** or **ip**
+```
+# cat /proc/devices
+```
+(For each driver, you can see the major number and the base name.)
+
+## 8.2 Getting information from sysfs ( /sys )
+
+- [!]  It contains all information of all devices. If you want to read/write to ( from ) a device. You need to use /dev/<dev_name>
+- [!] **The conclusion**, then, is that you can **learn** a lot about the **devices (the hardware)** and the **drivers (the software)** that are present on a system **by reading sysfs** (/sys )
+### 8.2.1 The devices: /sys/devices
+
+This is the kernel's view of the devices discovered since boot and how they are connected to each other.
+
+There are three directories that are present on all systems:
+- **system**: This contains **devices at the heart of the system**, including **CPUs** and **clocks**.
+- **virtual**: This contains devices that are **memory-based**. You **will find the memory devices** that appear as **/dev/null**, **/dev/random**, and **/dev/zero** in **virtual/mem**. You **will find** the **loopback** **device, lo**, in **virtual/net.**
+- **platform**: This is a catch-all for **devices** that are **not connected via a conventional hardware bus**. This may be almost everything on an embedded device.
+- The other devices appear in directories that correspond to actual system buses.
+
+- [i] To make life easier, **/sys/class** and **/sys/block** offer two different views of the devices.
+
+### 8.2.2 The drivers: /sys/class
+
+- This is a view of the **device drivers presented by their type**, in other words, It is a software view rather than a hardware view.
+- Each of the subdirectories represents a class of driver and is implemented by a component of the driver framework. **For example, UART devices are managed by the tty layer and you will find them in /sys/class/tty**.
+- **There is a symbolic link** in **each subdirectory** for each instance of that type of device pointing **to** its representation in **/sys/device**. For examples:
+
+```
+truonglv@ubuntu:/sys/class/tty$ ls -l
+total 0
+lrwxrwxrwx 1 root root 0 Jan  5 14:07 console -> ../../devices/virtual/tty/console
+lrwxrwxrwx 1 root root 0 Jan  5 14:07 ptmx -> ../../devices/virtual/tty/ptmx
+lrwxrwxrwx 1 root root 0 Jan  5 14:07 tty -> ../../devices/virtual/tty/tty
+lrwxrwxrwx 1 root root 0 Jan  5 14:07 tty0 -> ../../devices/virtual/tty/tty0
+lrwxrwxrwx 1 root root 0 Jan  5 14:07 tty1 -> ../../devices/virtual/tty/tty1
+```
+
+### 8.2.3 The block drivers: /sys/block
+
+- There is one more view of the device model that is important: **the block driver view** that you will find in **/sys/block**. There is a subdirectory for each block device.
+
+## 8.3 Finding the right device driver
+
+## 8.4 Designing a character device interface
+
+
 
 
 

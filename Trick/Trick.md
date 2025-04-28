@@ -256,17 +256,20 @@ sudo insmod pcd_platform_driver.ko
  
 (00 or 01 ,..)
 $ sudo nvim /etc/netplan/01-installer-config.yaml
+![[Pasted image 20250302115237.png]]
 ```
 network:
   version: 2
   ethernets:
     eth0:
       dhcp4: no
-      addresses: [192.168.0.5/24]
-      gateway4: 192.168.0.1
+      addresses: [192.168.32.95/24]
+      gateway4: 192.168.32.1
       nameservers:
         addresses: [8.8.8.8, 8.8.4.4]
 ```
 $ sudo netplan try
 $ sudo netplan apply
 $ sudo reboot
+
+

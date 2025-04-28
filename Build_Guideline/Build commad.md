@@ -295,7 +295,7 @@ sudo apt install nfs-kernel-server
 	
 - On BBB:
 ```
-sudo mount 192.168.0.95:/srv/nfs/bbb /home/truongbbb/code
+sudo mount 192.168.32.95:/srv/nfs/bbb /home/truongbbb/code
 ```
 
 ```
@@ -331,4 +331,72 @@ sudo dd if=/dev/zero of=/dev/mmcblk1 bs=1M count=1
 - How to recover:
 ```
 sudo dd if=emmcboot.img of=/dev/mmcblk1 bs=1M count=1
+```
+
+# 14 Adding device tree
+ 
+ **If you want to create  new nodes** 
+
+Step 1 : In Linux directory
+```bash
+cd arch/arm/boot/dts/
+```
+
+Step 2: Create a new my own device tree file and write my content
+```bash
+touch my-device-file.dtsi
+```
+
+
+Step 3: Open am335x-boneblack.dts
+```bash
+nvim am335x-boneblack.dts
+```
+
+Step 4 : Include my dtsi file in **am335x-boneblack.dts**
+
+
+Step 5: Build a new dtb file
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- am335x-boneblack.dtb
+```
+
+Step 6: We have an updated file here
+```
+arch/arm/boot/dts/am335x-boneblack.dts
+```
+# 15 Adding device tree overlays
+- **DT overlays are device tre patches  (dtbo) which are used to patch or modify the existing main device tree blob(dtb)**
+
+Step 1: Create my overlay files
+```bash
+touch my_ov.dts 
+```
+Step 2: The first 2 lines in this file:
+```dts
+/dts-v1/;
+/plugin/;
+```
+
+Step 3: Install device tree compiler
+```bash
+sudo apt install device-tre-compiler
+```
+Step 4: Build 
+```bash
+dtc -@ -I dts -O dtb -o my_ov.dtbo my_ov.dts
+```
+Ste5: update boot cmd
+```
+console=ttyS0,115200n8
+overlays=PCDEV0.dtbo PCDEV1.dtbo
+dtb=am335x-boneblack.dtb
+dtbopath=/lib/firmware
+ovenvsetup=setenv fdtaddr 0x87f00000;setenv fdtovaddr 0x87fc0000;
+fdtload=load mmc 0:1 ${fdtaddr} ${dtb};
+fdtcmd=fdt addr $fdtaddr;fdt resize 8192;
+fdtovload=for i in ${overlays};do echo Applying overlay...; load mmc 0:2 ${fdtovaddr} ${dtbopath}/${i}; fdt apply $fdtovaddr;done
+bootsettings=setenv bootargs console=ttyO0,115200n8 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait earlyprintk mem=512M
+mmcboot= run ovenvsetup ; run fdtload; run fdtcmd; run fdtovload;echo Booting from microSD ...; setenv autoload no ; load mmc 0:1 ${loadaddr} uImage ; run bootsettings ; bootm ${loadaddr} - ${fdtaddr}
+uenvcmd=run mmcboot
 ```
