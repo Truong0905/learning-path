@@ -155,3 +155,33 @@
     - Thay pipes bằng shared memory để tối ưu tốc độ.
         
 3. **Kết hợp man pages**: Gõ `man 2 <syscall>` để xem chi tiết (ví dụ: `man 2 pthread_create`).
+
+
+
+
+### **3. Chương nào có thể bỏ qua tạm thời?**
+
+Một số chương ít dùng hoặc chuyên biệt, bạn có thể lướt qua hoặc đọc sau:
+
+- **`Chương 15–19`**: File attributes, extended attributes (trừ khi làm việc với metadata).
+    
+- **`Chương 35–36`**: Terminal I/O (nếu không phát triển ứng dụng tương tác shell).
+    
+- **`Chương 53–55`**: Virtual memory, process resources (nếu không debug performance).
+    
+- **`Chương 64–65`**: Alternative I/O models, SCTP (chỉ cần nếu làm network programming).
+    
+
+---
+
+### **4. Chương nào không nên bỏ qua?**
+
+Dù đọc chọn lọc, hãy đảm bảo bạn nắm vững:
+
+- **`Chương 2–5`**: File I/O (vì mọi thứ trong Linux đều là file).
+    
+- **`Chương 6–8`**: Process management (`fork`, `exec`).
+    
+- **`Chương 20–24`**: Signal handling (quan trọng cho ứng dụng real-world).
+    
+- **`Chương 56–63`**: Networking (nếu làm hệ thống phân tán).

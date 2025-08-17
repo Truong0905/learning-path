@@ -69,6 +69,9 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 modules
 ```
 make -j4 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/home/truonglv/beagleBone/build/rfs modules_install
 ```
+
+- [!] make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- am335x-boneblack.dtb  DTC_FLAGS="-@"
+
 - [X] **After all , we will get :**
 	+ **uImage** file at : linux/arch/arm/boot
 	 + **dts** *folder*  at:  linux/arch/arm/boot 
@@ -274,7 +277,7 @@ sudo route add default gw 192.168.1.1 usb0
 ```
 echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 sudo iptables --table nat --append POSTROUTING --out-interface ens33 --jump MASQUERADE
-sudo iptables --append FORWARD --in-interface enx665779c1f17f --jump ACCEPT
+sudo iptables --append FORWARD --in-interface enxf22c3c065189 --jump ACCEPT
 ```
 - [i] ens33 and enx9a4b26497585 were found by 
 ```
@@ -384,7 +387,7 @@ sudo apt install device-tre-compiler
 ```
 Step 4: Build 
 ```bash
-dtc -@ -I dts -O dtb -o my_ov.dtbo my_ov.dts
+dtc -@ -I dts -O dtb -o lcd_rtc.dtbo lcd_rtc.dts
 ```
 Ste5: update boot cmd
 ```

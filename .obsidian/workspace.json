@@ -4,21 +4,44 @@
     "type": "split",
     "children": [
       {
-        "id": "3e2e88243943ba18",
+        "id": "7ccea163b62acd1a",
         "type": "tabs",
+        "dimension": 81.29092609915809,
         "children": [
           {
-            "id": "6f9d68ce53864db5",
+            "id": "094352ce3cd08d2e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Build_Guideline/Build commad.md",
+                "file": "Linux Concepts/20 Socket Internet Domains.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Build commad"
+              "title": "20 Socket Internet Domains"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ebcd5f69f2d87ce3",
+        "type": "tabs",
+        "dimension": 18.709073900841908,
+        "children": [
+          {
+            "id": "5e81f88a670cff5a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Linux Concepts/20 Socket Internet Domains.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 20 Socket Internet Domains"
             }
           }
         ]
@@ -40,7 +63,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "byCreatedTimeReverse",
+                "sortOrder": "byCreatedTime",
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
@@ -94,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Boot Loader/Boot_Sequence.md",
+                "file": "Linux Concepts/8 Signals.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +127,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Boot_Sequence"
+              "title": "Backlinks for 8 Signals"
             }
           },
           {
@@ -113,12 +136,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Boot Loader/Boot_Sequence.md",
+                "file": "Linux Concepts/8 Signals.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Boot_Sequence"
+              "title": "Outgoing links from 8 Signals"
             }
           },
           {
@@ -146,7 +169,8 @@
               "title": "Outline of Build commad"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -163,53 +187,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6f9d68ce53864db5",
+  "active": "094352ce3cd08d2e",
   "lastOpenFiles": [
-    "Boot Loader/Boot_Sequence.md",
-    "Build_Guideline/Build commad.md",
+    "Linux Concepts/19 Socket TCP IP.md",
+    "Linux Concepts/20 Socket Internet Domains.md",
+    "Linux Concepts/images/Pasted image 20250816132124.png",
+    "Linux Concepts/images/Pasted image 20250816140318.png",
+    "Linux Concepts/images/Pasted image 20250816130106.png",
+    "Linux Concepts/17 Sockets introduction.md",
+    "Linux Concepts/images/Pasted image 20250816090817.png",
+    "Linux Concepts/images/Pasted image 20250816085935.png",
+    "Pasted image 20250816085148.png",
+    "Pasted image 20250816085913.png",
+    "[[.md",
+    "Linux Concepts/images/Pasted image 20250816083754.png",
+    "Linux Concepts/18 Sockets Unix domain.md",
+    "Linux Concepts/1 Fundamental Concepts.md",
+    "Linux Concepts/7 Signals.md",
+    "Linux Concepts/images/Pasted image 20250814215342.png",
+    "Linux Concepts/3 System programming concepts.md",
+    "Linux Concepts/images/Pasted image 20250812214316.png",
+    "Linux Concepts/14 pipes and FIFOs.md",
+    "Linux Concepts/16 System V message queues.md",
+    "Linux Concepts/15 Sysem V IPC.md",
     "Linux Basic/Linux basic.md",
-    "Yocto/Sumary.md",
-    "YoctoTutorials/00_Yocto_Intro/00-Yocto-Intro.md",
+    "Kernel_doc/Untitled.md",
     "Embeded_Linux/Embeded_Linux.md",
     "Device Driver/Device Driver.md",
-    "Kernel_doc/Untitled.md",
-    "Multi Threads/Untitled 1.md",
-    "Misc/Misc.md",
-    "Multi Threads/Untitled.md",
-    "Linux_From_Scratch/Linux_from_Scratch.md",
-    "Misc/images/Pasted image 20250319012528.png",
-    "Misc/images/Pasted image 20250319012444.png",
+    "Build_Guideline/Build commad.md",
+    "Linux Concepts/12 Thread synchronization.md",
+    "Linux Concepts/10 program execution.md",
+    "Linux Concepts/8 Signals advanced features.md",
+    "Linux Concepts/5 Process.md",
+    "Linux Concepts/4 File I O The uiniversal I O model.md",
+    "Linux Concepts/9 Process creation, termination and monitoring child processes.md",
+    "Future/Future.md",
+    "Linux Concepts/13 interprocess communication.md",
+    "Linux programming/Tranning plan.md",
+    "Linux Concepts/11 Threads.md",
+    "Linux Concepts/images",
+    "Linux Concepts",
+    "My Project",
     "Misc/images",
-    "Misc/images/Pasted image 20250319012323.png",
     "Misc",
-    "Trick/Trick.md",
-    "Multi Threads",
+    "Linux programming",
     "Kernel_doc",
-    "Trick/images/Pasted image 20250302115237.png",
     "Trick/images",
-    "Yocto/images/Pasted image 20250227214918.png",
-    "Yocto/images/Pasted image 20250227214800.png",
-    "Yocto/images/Pasted image 20250227214745.png",
-    "Yocto/images/Pasted image 20250227214717.png",
-    "Yocto/images/Pasted image 20250227214641.png",
-    "Yocto/images/Pasted image 20250227214506.png",
-    "YoctoTutorials/25_SystemD_Service_Recipe/25_SystemD_Service_Recipe.md",
-    "YoctoTutorials/24_SystemD_Init_Manager/24_SystemD_init_manager.md",
     "Yocto_folder",
-    "YoctoTutorials/11_RDEPENDS/11_RDEPENDS.md",
-    "YoctoTutorials/10_Patch/10_Patch.md",
-    "YoctoTutorials/09_Build_Tasks/09_Build_Tasks.md",
-    "YoctoTutorials/07_Variable_Assignment/07_Variable_Assignment.md",
-    "YoctoTutorials/04_Add_Package/04_Add_Packages.md",
-    "YoctoTutorials/08_Hello_World_Recipe/08_Hello_World_Recipe.md",
-    "YoctoTutorials/06_Basic_Variables/06_Basic_Variables.md",
-    "Yocto/images",
-    "YoctoTutorials/05_Create_Layer/05_Create_Layer.md",
-    "YoctoTutorials/03_BBLAYERS_Conf/03_BBLAYERS_Conf.md",
-    "YoctoTutorials/02_Local_Conf/02_Local_Conf.md",
-    "YoctoTutorials/01_Flashing_BBB/01-Flashing-BBB.md",
-    "Device Driver/images",
-    "Device Driver",
-    "Build_Guideline"
+    "Yocto/images"
   ]
 }
