@@ -6,7 +6,7 @@
       {
         "id": "7ccea163b62acd1a",
         "type": "tabs",
-        "dimension": 81.29092609915809,
+        "dimension": 85.8450704225352,
         "children": [
           {
             "id": "094352ce3cd08d2e",
@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Reference Links/link.md",
+                "file": "Docker/Docker.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "link"
+              "title": "Docker"
             }
           }
         ]
@@ -27,7 +27,7 @@
       {
         "id": "ebcd5f69f2d87ce3",
         "type": "tabs",
-        "dimension": 18.709073900841908,
+        "dimension": 14.154929577464792,
         "children": [
           {
             "id": "5e81f88a670cff5a",
@@ -35,13 +35,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Reference Links/link.md",
+                "file": "Docker/Docker.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of link"
+              "title": "Outline of Docker"
             }
           }
         ]
@@ -187,26 +187,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "094352ce3cd08d2e",
+  "active": "a1e75dc24eb5693c",
   "lastOpenFiles": [
-    "Linux Concepts/20 Socket Internet Domains.md",
+    "Docker/Images/Pasted image 20250817230312.png",
+    "Docker/Images/Pasted image 20250817230243.png",
+    "Docker/Images/Pasted image 20250817230135.png",
+    "Docker/Images/Pasted image 20250817230043.png",
+    "Docker/Images/Pasted image 20250817225959.png",
+    "Docker/Images/Pasted image 20250817225914.png",
+    "Docker/Images/Pasted image 20250817225827.png",
+    "Docker/Images/Pasted image 20250817225806.png",
+    "Docker/Images/Pasted image 20250817225348.png",
+    "Docker/Images/Pasted image 20250817225237.png",
+    "Docker/Images/Pasted image 20250817225208.png",
+    "OpenWRT/OpenWRT.md",
+    "Docker/Docker.md",
+    "Docker/Images",
+    "Docker",
     "Linux Concepts/19 Socket TCP IP.md",
-    "Linux Concepts/images/Pasted image 20250816132124.png",
-    "Linux Concepts/images/Pasted image 20250816140318.png",
-    "Linux Concepts/images/Pasted image 20250816130106.png",
+    "Linux Concepts/20 Socket Internet Domains.md",
+    "OpenWRT/Images",
+    "Reference Links/link.md",
+    "OpenWRT",
     "Linux Concepts/17 Sockets introduction.md",
-    "Linux Concepts/images/Pasted image 20250816090817.png",
-    "Linux Concepts/images/Pasted image 20250816085935.png",
-    "Pasted image 20250816085148.png",
-    "Pasted image 20250816085913.png",
     "[[.md",
-    "Linux Concepts/images/Pasted image 20250816083754.png",
     "Linux Concepts/18 Sockets Unix domain.md",
     "Linux Concepts/1 Fundamental Concepts.md",
     "Linux Concepts/7 Signals.md",
-    "Linux Concepts/images/Pasted image 20250814215342.png",
     "Linux Concepts/3 System programming concepts.md",
-    "Linux Concepts/images/Pasted image 20250812214316.png",
     "Linux Concepts/14 pipes and FIFOs.md",
     "Linux Concepts/16 System V message queues.md",
     "Linux Concepts/15 Sysem V IPC.md",
@@ -221,19 +229,11 @@
     "Linux Concepts/5 Process.md",
     "Linux Concepts/4 File I O The uiniversal I O model.md",
     "Linux Concepts/9 Process creation, termination and monitoring child processes.md",
-    "Future/Future.md",
-    "Linux Concepts/13 interprocess communication.md",
-    "Linux programming/Tranning plan.md",
-    "Linux Concepts/11 Threads.md",
     "Linux Concepts/images",
     "Linux Concepts",
     "My Project",
     "Misc/images",
     "Misc",
-    "Linux programming",
-    "Kernel_doc",
-    "Trick/images",
-    "Yocto_folder",
-    "Yocto/images"
+    "Linux programming"
   ]
 }
