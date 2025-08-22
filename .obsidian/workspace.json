@@ -4,45 +4,47 @@
     "type": "split",
     "children": [
       {
-        "id": "7ccea163b62acd1a",
+        "id": "95b3124d79cf36cb",
         "type": "tabs",
-        "dimension": 85.8450704225352,
+        "dimension": 72.44582043343654,
         "children": [
           {
-            "id": "094352ce3cd08d2e",
+            "id": "13612ad3241c472d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Docker/Docker.md",
+                "file": "OpenWRT/OpenWRT.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Docker"
-            }
+              "title": "OpenWRT"
+            },
+            "group": "0961686eb95649b9"
           }
         ]
       },
       {
-        "id": "ebcd5f69f2d87ce3",
+        "id": "5880a3028d37a6d6",
         "type": "tabs",
-        "dimension": 14.154929577464792,
+        "dimension": 27.55417956656347,
         "children": [
           {
-            "id": "5e81f88a670cff5a",
+            "id": "ccd144f490229ce8",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Docker/Docker.md",
+                "file": "OpenWRT/OpenWRT.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Docker"
-            }
+              "title": "Outline of OpenWRT"
+            },
+            "group": "0961686eb95649b9"
           }
         ]
       }
@@ -101,7 +103,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "8958964be28bd050",
@@ -179,6 +182,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -187,8 +191,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a1e75dc24eb5693c",
+  "active": "ccd144f490229ce8",
   "lastOpenFiles": [
+    "Docker/Docker.md",
+    "OpenWRT/OpenWRT.md",
+    "Untitled 1.base",
+    "Untitled.canvas",
+    "Untitled.base",
+    "Yocto/images/Pasted image 20250221211144.png",
+    "Trick/Trick.md",
+    "Linux Basic/Linux basic.md",
     "Docker/Images/Pasted image 20250817230312.png",
     "Docker/Images/Pasted image 20250817230243.png",
     "Docker/Images/Pasted image 20250817230135.png",
@@ -198,10 +210,6 @@
     "Docker/Images/Pasted image 20250817225827.png",
     "Docker/Images/Pasted image 20250817225806.png",
     "Docker/Images/Pasted image 20250817225348.png",
-    "Docker/Images/Pasted image 20250817225237.png",
-    "Docker/Images/Pasted image 20250817225208.png",
-    "OpenWRT/OpenWRT.md",
-    "Docker/Docker.md",
     "Docker/Images",
     "Docker",
     "Linux Concepts/19 Socket TCP IP.md",
@@ -218,7 +226,6 @@
     "Linux Concepts/14 pipes and FIFOs.md",
     "Linux Concepts/16 System V message queues.md",
     "Linux Concepts/15 Sysem V IPC.md",
-    "Linux Basic/Linux basic.md",
     "Kernel_doc/Untitled.md",
     "Embeded_Linux/Embeded_Linux.md",
     "Device Driver/Device Driver.md",
@@ -228,12 +235,9 @@
     "Linux Concepts/8 Signals advanced features.md",
     "Linux Concepts/5 Process.md",
     "Linux Concepts/4 File I O The uiniversal I O model.md",
-    "Linux Concepts/9 Process creation, termination and monitoring child processes.md",
     "Linux Concepts/images",
     "Linux Concepts",
     "My Project",
-    "Misc/images",
-    "Misc",
-    "Linux programming"
+    "Misc/images"
   ]
 }

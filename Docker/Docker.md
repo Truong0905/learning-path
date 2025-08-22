@@ -214,7 +214,7 @@ docker build [OPTIONS] PATH | URL | -
 
 ## Using docker compose
 (Running multiple services)
-- Using .yaml file to setup iur configurations
+- Using .yaml file to setup our configurations
 ![[Pasted image 20250817223218.png]]
 
 - End then run the command
@@ -329,13 +329,6 @@ A **Docker volume** is storage managed by Docker that lives **outside the contai
 ![[Pasted image 20250817230243.png]]
 
 ![[Pasted image 20250817230312.png]]
-
-
-
-
-
-
-
 
 
 
