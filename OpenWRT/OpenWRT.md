@@ -273,7 +273,7 @@ After retrieval the downloaded packages need to be _“installed”_. Only afte
 
 # Commands
 
-## 1 Build commands'
+## 1 Build commands
 
 
 ```bash
@@ -296,6 +296,26 @@ sudo docker tag openwrt_bbb:22_08_25 truonglv95/bbb:22_08_25
 ```bash
 sudo docker push truonglv95/bbb:22_08_25
 ```
+
+- Docker compose file.yaml
+```yaml
+services:
+  openwrt_bbb:
+    image: openwrt_bbb:22_08_25
+    stdin_open: true
+    tty: true
+    restart: "no"
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 262144
+    volumes:
+      - ./openwrt/openwrt-23.05:/workdir
+    working_dir: /workdir
+    command: /bin/bash
+
+```
+
 
 ## 2 compile commands
 
@@ -386,6 +406,18 @@ sudo losetup -d /dev/loop0
 ```
 
 
+
+
+
+# Adding a new package
+
+```bash
+export PATH=/workdir/staging_dir/toolchain-arm_cortex-a8+vfpv3_gcc-12.3.0_musl_eabi/bin:$PATH
+```
+
+```
+arm-openwrt-linux-muslgnueabi-gcc main.c -o main
+```
 
 
 # Addition

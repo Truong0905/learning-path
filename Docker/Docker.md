@@ -214,6 +214,8 @@ docker build [OPTIONS] PATH | URL | -
 
 ## Using docker compose
 (Running multiple services)
+https://docs.docker.com/reference/compose-file/
+
 - Using .yaml file to setup our configurations
 ![[Pasted image 20250817223218.png]]
 
